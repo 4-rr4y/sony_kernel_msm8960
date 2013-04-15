@@ -63,6 +63,8 @@ static struct drv_data {
 	struct device *dev;
 } drv;
 
+struct acpu_level *acpu_freq_tbl; 
+
 static unsigned long acpuclk_krait_get_rate(int cpu)
 {
 	return drv.scalable[cpu].cur_speed->khz;
@@ -1004,6 +1006,7 @@ static void __init drv_data_init(struct device *dev,
 	drv.acpu_freq_tbl = kmemdup(params->pvs_tables[tbl_idx].table,
 				    params->pvs_tables[tbl_idx].size,
 				    GFP_KERNEL);
+        acpu_freq_tbl = drv.acpu_freq_tbl;
 	BUG_ON(!drv.acpu_freq_tbl);
 	drv.boost_uv = params->pvs_tables[tbl_idx].boost_uv;
 

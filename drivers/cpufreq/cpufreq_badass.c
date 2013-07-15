@@ -1459,4 +1459,3 @@ module_init(cpufreq_gov_bds_init);
 #endif
 module_exit(cpufreq_gov_bds_exit);
 
-

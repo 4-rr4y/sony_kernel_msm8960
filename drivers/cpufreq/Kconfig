@@ -283,7 +283,7 @@ config LAGFREE_FREQ_SLEEP_MAX
 
 config LAGFREE_FREQ_AWAKE_MIN
 	int "Min Awake frequeny"
-	default 384000
+	default 192000
 	depends on CPU_FREQ_GOV_LAGFREE
 	help
 	  Min freqeuncy for screen on.

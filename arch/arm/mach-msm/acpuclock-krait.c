@@ -63,7 +63,7 @@ static struct drv_data {
 	struct device *dev;
 } drv;
 
-struct acpu_level *acpu_freq_tbl; 
+struct acpu_level *acpu_freq_tbl;
 
 static unsigned long acpuclk_krait_get_rate(int cpu)
 {

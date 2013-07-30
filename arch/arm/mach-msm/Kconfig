@@ -2569,8 +2569,20 @@ config MSM_CPU_PWRCTL
 
 config GPU_OVERCLOCK
 	bool "Enable GPU Overclocking option"
-	default y
+        default n
 	help
 	  Adreno2xx overclocking up to 450 MHz
+
+config CPU_OVERCLOCK
+        bool "Enable CPU Overclocking option"
+        default n
+        help
+          MSM8960 overclocking up to 1890 MHz
+
+config LOW_CPUCLOCKS
+        bool "Enable low CPU clocks"
+        default n
+        help
+          Low CPU clocks for MSM8960
 
 endif

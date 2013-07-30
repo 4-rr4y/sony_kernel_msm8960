@@ -1,0 +1,10 @@
+#!/bin/bash
+clear
+echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+echo " Toolchain must be specified in 'runme' file"
+echo " in kernel folder (export CROSS_COMPILE=[your path])"
+echo
+echo " Example: export CROSS_COMPILE=~/toolchains
+          /arm-eabi-linaro-4.6.2/bin/arm-eabi-"
+echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+read -p "Press [ENTER] to continue"

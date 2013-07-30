@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd ./
+clear
+# export ${ARCH}
+# export ${CROSS_COMPILE}
+
+make distclean
+
+read -p "Press [ENTER] to continue"

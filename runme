@@ -1,0 +1,40 @@
+#!/bin/bash
+export DIR=$(cd $(dirname "$0"); pwd)
+export START=$DIR/runme
+cd $DIR
+clear
+echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+echo
+echo "- Choose your action."
+echo
+echo "1.  Make clean"
+echo "2.  Make distclean"
+echo "3.  Make defconfig"
+echo "4.  Make menuconfig"
+echo "5.  Make (build kernel)"
+echo
+echo "0.  Show requirements"
+echo "Q.  Quit script"
+echo
+echo " Enter desired option number and press enter"
+read OPT
+export DO=$DIR/myscripts
+export ARCH=arm
+
+# toolchain path goes here:
+export CROSS_COMPILE=~/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-
+#export CROSS_COMPILE=~/toolchains/arm-linux-androideabi-4.7/bin/arm-linux-androideabi-
+#export CROSS_COMPILE=~/linaro-gcc-4.7.3/bin/arm-eabi-
+case $OPT in       
+        0) $DO/scriptsreq ;;
+	1) $DO/makeclean ;;
+        2) $DO/makedistclean ;;
+	3) $DO/makedefconfig ;;
+	4) $DO/makemenu ;;
+	5) $DO/make ;;
+	Q) clear; echo "Press [ENTER] to kill script."; read; exit;;
+	q) clear; echo "Press [ENTER] to kill script."; read; exit;;
+esac
+
+clear
+$START

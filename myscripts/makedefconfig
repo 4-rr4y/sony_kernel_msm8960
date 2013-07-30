@@ -1,0 +1,36 @@
+#!/bin/bash
+
+cd ./
+
+# export ${ARCH}
+# export ${CROSS_COMPILE}
+clear
+echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+echo "Choose your defconfig action"
+echo
+echo "1.  cm_blue_tsubasa_defconfig"
+echo "2.  cm_blue_mint_defconfig"
+echo "3.  cm_blue_hayabusa_defconfig"
+echo
+echo "4.  blue_tsubasa_defconfig"
+echo "5.  blue_mint_defconfig"
+echo "6.  blue_hayabusa_defconfig"
+echo
+echo "0.  Return to main menu"
+echo
+echo " Enter desired option number and press enter"
+read OPT
+case $OPT in
+        0) $START ;;
+	1) make cm_blue_tsubasa_defconfig ;;
+        2) make cm_blue_mint_defconfig ;;
+	3) make cm_blue_hayabusa_defconfig ;;
+	4) make blue_tsubasa_defconfig ;;
+	5) make blue_mint_defconfig ;;
+        6) make blue_hayabusa_defconfig ;;
+esac
+
+read -p "Press [ENTER] to continue"
+clear
+$START
+make cm_blue_tsubasa_defconfig

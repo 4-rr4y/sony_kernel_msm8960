@@ -1,37 +1,78 @@
 #!/bin/bash
 export DIR=$(cd $(dirname "$0"); pwd)
 export START=$DIR/runme
+# Toolchain path goes here:
+export TC=~/linaro-gcc-4.7.3/bin/arm-eabi-
 cd $DIR
 clear
-echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+echo "  ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+echo " toolchain path: "$TC
+echo "  ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
 echo
-echo "- Choose your action."
+echo " choose your action."
 echo
-echo "1.  Make clean"
-echo "2.  Make distclean"
-echo "3.  Make defconfig"
-echo "4.  Make menuconfig"
-echo "5.  Make (build kernel)"
+echo "1.  clean kernel dir <make clean, make distclean>"
+echo "2.  set blue_tsubasa_defconfig <make defconfig>"
+echo "3.  set blue_mint_defconfig <make defconfig>"
+echo "4.  set blue_hayabusa_defconfig <make defconfig>"
+echo "5.  run menuconfig <make menuconfig>"
+echo "6.  build kernel <make -j3>"
 echo
-echo "0.  Show requirements"
-echo "Q.  Quit script"
+echo "0.  show requirements"
+echo "q.  quit script"
 echo
 echo " Enter desired option number and press enter"
 read OPT
-export DO=$DIR/myscripts
-export ARCH=arm
-
-# toolchain path goes here:
-export CROSS_COMPILE=~/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-
-#export CROSS_COMPILE=~/toolchains/arm-linux-androideabi-4.7/bin/arm-linux-androideabi-
-#export CROSS_COMPILE=~/linaro-gcc-4.7.3/bin/arm-eabi-
 case $OPT in       
-        0) $DO/scriptsreq ;;
-	1) $DO/makeclean ;;
-        2) $DO/makedistclean ;;
-	3) $DO/makedefconfig ;;
-	4) $DO/makemenu ;;
-	5) $DO/make ;;
+        0) clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " Toolchain must be specified in this file (runme)"; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           read -p "Press [ENTER] to continue";;
+	1) cd ./; 
+           clear; 
+           echo " - Running 'make clean'"; 
+           ARCH=arm CROSS_COMPILE=${TC} make clean; 
+           echo "- OK"; 
+           echo; 
+           echo " - Running 'make distclean'";
+           ARCH=arm CROSS_COMPILE=${TC} make distclean; 
+           echo "- OK"; 
+           echo; 
+           read -p "Press [ENTER] to continue";;
+	2) cd ./; clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " Setting defconfig for tsubasa <blue_tsubasa_defconfig>"; 
+           echo; 
+           ARCH=arm CROSS_COMPILE=${TC} make blue_tsubasa_defconfig; 
+           echo "- OK"; 
+           read -p "Press [ENTER] to continue";;
+	3) cd ./; clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " Setting defconfig for mint <blue_mint_defconfig>"; 
+           echo; 
+           ARCH=arm CROSS_COMPILE=${TC} make blue_mint_defconfig; 
+           echo "- OK"; 
+           read -p "Press [ENTER] to continue";;
+	4) cd ./; clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " Setting defconfig for hayabusa <blue_hayabusa_defconfig>"; 
+           echo; 
+           ARCH=arm CROSS_COMPILE=${TC} make blue_hayabusa_defconfig; 
+           echo "- OK"; 
+           read -p "Press [ENTER] to continue";;
+        5) cd ./; clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " Running menuconfig <make menuconfig>"; 
+           echo; 
+           ARCH=arm CROSS_COMPILE=${TC} make menuconfig; 
+           read -p "Press [ENTER] to continue";;
+        6) cd ./; clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " Building kernel with -j3 <make -j3>"; 
+           echo; 
+           ARCH=arm CROSS_COMPILE=${TC} make -j3; 
+           read -p "Press [ENTER] to continue";;
 	Q) clear; echo "Press [ENTER] to kill script."; read; exit;;
 	q) clear; echo "Press [ENTER] to kill script."; read; exit;;
 esac

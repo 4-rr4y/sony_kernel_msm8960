@@ -6,6 +6,7 @@ export TC=~/linaro-gcc-4.7.3/bin/arm-eabi-
 cd $DIR
 clear
 echo "  ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
+echo " user: $(whoami) | system: $(uname -s) $(uname -m) | machine: $(uname -n)"
 echo " toolchain path: "$TC
 echo "  ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
 echo
@@ -15,66 +16,75 @@ echo "1.  clean kernel dir <make clean, make distclean>"
 echo "2.  set blue_tsubasa_defconfig <make defconfig>"
 echo "3.  set blue_mint_defconfig <make defconfig>"
 echo "4.  set blue_hayabusa_defconfig <make defconfig>"
-echo "5.  run menuconfig <make menuconfig>"
-echo "6.  build kernel <make -j3>"
+echo "5.  set other defconfig <make defconfig>"
+echo "6.  run menuconfig <make menuconfig>"
+echo "7.  build kernel <make -j?>"
 echo
 echo "0.  show requirements"
 echo "q.  quit script"
 echo
-echo " Enter desired option number and press enter"
+echo " enter desired option number and press enter"
 read OPT
 case $OPT in       
         0) clear; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           echo " Toolchain must be specified in this file (runme)"; 
+           echo " toolchain must be specified in this file (runme)"; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           read -p "Press [ENTER] to continue";;
+           read -p "press [enter] to continue";;
 	1) cd ./; 
            clear; 
-           echo " - Running 'make clean'"; 
+           echo " - running 'make clean'"; 
            ARCH=arm CROSS_COMPILE=${TC} make clean; 
-           echo "- OK"; 
+           echo "- ok"; 
            echo; 
-           echo " - Running 'make distclean'";
+           echo " - running 'make distclean'";
            ARCH=arm CROSS_COMPILE=${TC} make distclean; 
-           echo "- OK"; 
+           echo "- ok"; 
            echo; 
-           read -p "Press [ENTER] to continue";;
+           read -p "press [enter] to continue";;
 	2) cd ./; clear; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           echo " Setting defconfig for tsubasa <blue_tsubasa_defconfig>"; 
+           echo " setting defconfig for tsubasa <blue_tsubasa_defconfig>"; 
            echo; 
            ARCH=arm CROSS_COMPILE=${TC} make blue_tsubasa_defconfig; 
-           echo "- OK"; 
-           read -p "Press [ENTER] to continue";;
+           echo "- ok"; 
+           read -p "press [enter] to continue";;
 	3) cd ./; clear; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           echo " Setting defconfig for mint <blue_mint_defconfig>"; 
+           echo " setting defconfig for mint <blue_mint_defconfig>"; 
            echo; 
            ARCH=arm CROSS_COMPILE=${TC} make blue_mint_defconfig; 
-           echo "- OK"; 
-           read -p "Press [ENTER] to continue";;
+           echo "- ok"; 
+           read -p "press [enter] to continue";;
 	4) cd ./; clear; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           echo " Setting defconfig for hayabusa <blue_hayabusa_defconfig>"; 
+           echo " setting defconfig for hayabusa <blue_hayabusa_defconfig>"; 
            echo; 
            ARCH=arm CROSS_COMPILE=${TC} make blue_hayabusa_defconfig; 
-           echo "- OK"; 
-           read -p "Press [ENTER] to continue";;
+           echo "- ok"; 
+           read -p "press [enter] to continue";;
         5) cd ./; clear; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           echo " Running menuconfig <make menuconfig>"; 
-           echo; 
-           ARCH=arm CROSS_COMPILE=${TC} make menuconfig; 
-           read -p "Press [ENTER] to continue";;
+           echo " set other defconfig"; 
+           echo; echo "write yourself (e.g 'blue_tsubasa_defconfig'"; 
+           echo; read defconfig; 
+           ARCH=arm CROSS_COMPILE=${TC} make $defconfig; 
+           read -p "press [enter] to continue";;
         6) cd ./; clear; 
            echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
-           echo " Building kernel with -j3 <make -j3>"; 
+           echo " running menuconfig <make menuconfig>"; 
            echo; 
-           ARCH=arm CROSS_COMPILE=${TC} make -j3; 
-           read -p "Press [ENTER] to continue";;
-	Q) clear; echo "Press [ENTER] to kill script."; read; exit;;
-	q) clear; echo "Press [ENTER] to kill script."; read; exit;;
+           ARCH=arm CROSS_COMPILE=${TC} make menuconfig; 
+           read -p "press [enter] to continue";;
+        7) cd ./; clear; 
+           echo "¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"; 
+           echo " build kernel with -j? <make>"; 
+           echo; echo "enter a number which goes 'make -j<here>' and press enter"; 
+           echo; read J_PER_CORE; 
+           ARCH=arm CROSS_COMPILE=${TC} make -j$J_PER_CORE; 
+           read -p "press [enter] to continue";;
+	Q) clear; echo "press [enter] to kill script."; read; exit;;
+	q) clear; echo "press [enter] to kill script."; read; exit;;
 esac
 
 clear

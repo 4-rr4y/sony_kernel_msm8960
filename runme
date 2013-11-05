@@ -2,12 +2,12 @@
 export DIR=$(cd $(dirname "$0"); pwd)
 export START=$DIR/runme
 # Toolchain path goes here:
-export TC=~/linaro-gcc-4.7.3/bin/arm-eabi-
+export TC=~/android_prebuilt_toolchains-master/arm-eabi-linaro-4.6.2/bin/arm-eabi-
 cd $DIR
 clear
 echo "  ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
-echo " user: $(whoami) | system: $(uname -s) $(uname -m) | machine: $(uname -n)"
-echo " toolchain path: "$TC
+echo " user: $(whoami) | machine: $(uname -n) | toolchain path: "
+echo " "$TC
 echo "  ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨ ¨"
 echo
 echo " choose your action."
